@@ -20,7 +20,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-const (
+var (
 	minCharsetConfidence = 85
 	minCharsetRuneLength = 100
 )
@@ -62,6 +62,11 @@ func NewPart(contentType string) *Part {
 		ContentTypeParams: make(map[string]string),
 		parser:            &defaultParser,
 	}
+}
+
+// SetMinCharsetConfidence set charset detection confidence
+func SetMinCharsetConfidence(conf int) {
+	minCharsetConfidence = conf
 }
 
 // AddChild adds a child part to either FirstChild or the end of the children NextSibling chain.
